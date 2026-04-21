@@ -22,6 +22,9 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 section[id] {
@@ -29,6 +32,9 @@ section[id] {
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   margin: 0;
   color: var(--ink);
   background: var(--paper);
@@ -38,6 +44,11 @@ body {
 
 img {
   display: block;
+  max-width: 100%;
+}
+
+video,
+table {
   max-width: 100%;
 }
 
@@ -330,36 +341,40 @@ h3 {
 .pets-hero {
   min-height: calc(100vh - var(--header-height));
   display: grid;
-  grid-template-columns: minmax(320px, 0.42fr) minmax(0, 0.58fr);
-  align-items: center;
-  gap: clamp(28px, 4vw, 64px);
-  padding: clamp(40px, 7vw, 90px) clamp(18px, 5vw, 72px);
+  grid-template-columns: 1fr;
+  align-content: center;
+  justify-items: center;
+  gap: clamp(24px, 3vw, 38px);
+  padding: clamp(38px, 5vw, 70px) clamp(18px, 5vw, 72px);
   color: var(--coal);
   background:
-    linear-gradient(90deg, rgba(247, 244, 234, 1) 0%, rgba(247, 244, 234, 0.88) 42%, rgba(247, 244, 234, 0.46) 100%),
+    linear-gradient(180deg, rgba(247, 244, 234, 1) 0%, rgba(247, 244, 234, 0.92) 48%, rgba(247, 244, 234, 0.76) 100%),
     #f7f4ea;
 }
 
 .pets-hero-copy {
-  max-width: 540px;
+  width: min(100%, 980px);
+  text-align: center;
 }
 
 .pets-hero-copy h1 {
   margin-bottom: 18px;
   color: #123b25;
-  font-size: clamp(3.2rem, 7vw, 6.8rem);
-  line-height: 0.9;
+  font-size: clamp(3rem, 7vw, 6.2rem);
+  line-height: 0.92;
   text-transform: uppercase;
 }
 
 .pets-hero-copy p:not(.eyebrow) {
-  margin: 0 0 28px;
+  max-width: 680px;
+  margin: 0 auto 28px;
   color: #3f4641;
   font-size: clamp(1rem, 1.35vw, 1.24rem);
   line-height: 1.55;
 }
 
 .pets-preview {
+  width: min(100%, 1180px);
   margin: 0;
   overflow: hidden;
   border-radius: 8px;
@@ -499,6 +514,17 @@ h3 {
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
   gap: clamp(28px, 5vw, 72px);
   align-items: center;
+}
+
+.split-layout > *,
+.dosage-layout > *,
+.brochure > *,
+.contact > *,
+.content-band > *,
+.bull-value-header > *,
+.bull-value-notes > *,
+.specs > * {
+  min-width: 0;
 }
 
 .brochure {
@@ -836,7 +862,9 @@ h3 {
 
 .dosage-table-wrap {
   margin-top: 28px;
+  max-width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-radius: 8px;
   box-shadow: var(--shadow);
 }
@@ -958,6 +986,8 @@ h3 {
 .brochure-video {
   align-self: center;
   margin: 0;
+  width: 100%;
+  max-width: 100%;
   max-height: 760px;
   aspect-ratio: 4 / 5;
   overflow: visible;
@@ -1117,6 +1147,10 @@ h3 {
     --header-height: 68px;
   }
 
+  body {
+    position: relative;
+  }
+
   .home-page {
     --header-height: 68px;
   }
@@ -1172,12 +1206,17 @@ h3 {
   }
 
   .hero {
+    width: 100%;
     min-height: 400px;
     height: calc(100svh - var(--proof-strip-height));
   }
 
   .hero-slide {
     padding-top: var(--header-height);
+  }
+
+  .hero-image {
+    object-position: 72% top;
   }
 
   .hero-overlay {
@@ -1188,15 +1227,41 @@ h3 {
 
   .hero-content {
     width: calc(100% - 36px);
+    max-width: calc(100% - 36px);
     margin: 0 18px;
   }
 
   h1 {
-    font-size: 2.35rem;
+    max-width: 100%;
+    font-size: clamp(2rem, 9vw, 2.35rem);
+  }
+
+  .hero-copy,
+  .intro-copy,
+  .bull-value-header p,
+  .contact-copy p:not(.eyebrow) {
+    max-width: 100%;
+  }
+
+  .hero-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+    min-height: 44px;
+    flex: none;
+    padding: 0 12px;
+    font-size: 0.88rem;
+    white-space: nowrap;
   }
 
   .hero-trust {
     flex-wrap: wrap;
+    max-width: 100%;
   }
 
   h2 {
@@ -1204,7 +1269,22 @@ h3 {
   }
 
   .section {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
     padding: 64px 18px;
+  }
+
+  .intro::before {
+    right: -170px;
+  }
+
+  .bull-value::before {
+    right: -190px;
+  }
+
+  .bull-value::after {
+    display: none;
   }
 
   .proof-strip,
@@ -1215,6 +1295,8 @@ h3 {
   }
 
   .proof-strip {
+    width: 100%;
+    max-width: 100%;
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1228,8 +1310,40 @@ h3 {
     width: 100%;
   }
 
+  .dosage-table {
+    min-width: 680px;
+    table-layout: fixed;
+  }
+
+  .dosage-table th,
+  .dosage-table td {
+    padding: 14px 12px;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
+    line-height: 1.28;
+  }
+
+  .dosage-table thead th {
+    height: 56px;
+    font-size: 0.86rem;
+    line-height: 1.25;
+    vertical-align: middle;
+  }
+
+  .brochure-video {
+    justify-self: center;
+    width: min(100%, 360px);
+    max-height: none;
+  }
+
+  .brochure-video video {
+    height: auto;
+  }
+
   .site-footer {
     flex-direction: column;
+    width: 100%;
   }
 
   .contact-actions {
